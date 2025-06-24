@@ -1,25 +1,28 @@
 import xgboost as xgb
 
-def train_xgboost_regressor(X_train, y_train):
+def train_xgboost_regressor(X_train, y_train, X_val, y_val, early_stopping_rounds=50):
     """
-    Train an XGBoost Regressor.
-
-    Parameters:
-        X_train (array-like): Training features
-        y_train (array-like): Target values
+    Train XGBoost Regressor with validation monitoring.
 
     Returns:
-        model (xgb.XGBRegressor): Trained model
+        model: Trained XGBoost model
     """
     model = xgb.XGBRegressor(
-        n_estimators=100,
+        n_estimators=1000,
         learning_rate=0.1,
         max_depth=6,
         subsample=0.8,
         colsample_bytree=0.8,
-        random_state=42
+        random_state=42,
+        objective='reg:squarederror'
     )
 
-    model.fit(X_train, y_train)
-    
-    return model  # << YOU MUST HAVE THIS LINE
+    model.fit(
+        X_train, y_train,
+        eval_set=[(X_val, y_val)],
+        eval_metric='rmse',
+        early_stopping_rounds=early_stopping_rounds,
+        verbose=True
+    )
+
+    return model
