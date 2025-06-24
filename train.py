@@ -14,13 +14,13 @@ def train_xgboost_regressor(X_train, y_train, X_val, y_val, early_stopping_round
         subsample=0.8,
         colsample_bytree=0.8,
         random_state=42,
-        objective='reg:squarederror'
+        objective='reg:squarederror',
+        eval_metric='rmse'
     )
 
     model.fit(
         X_train, y_train,
         eval_set=[(X_val, y_val)],
-        eval_metric='rmse',
         early_stopping_rounds=early_stopping_rounds,
         verbose=True
     )
