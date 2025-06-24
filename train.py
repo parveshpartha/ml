@@ -1,18 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-"""
-XGBoost Regressor Training Script
-
-This script trains an XGBoost Regressor using provided feature and target data.
-"""
-
-import xgboost as xgb
-
-
 def train_xgboost_regressor(X_train, y_train):
     """
     Train an XGBoost Regressor.
@@ -20,10 +5,9 @@ def train_xgboost_regressor(X_train, y_train):
     Parameters:
         X_train (array-like): Training features
         y_train (array-like): Target values
-        
 
     Returns:
-        model (xgb.XGBRegressor): Trained XGBoost Regressor
+        model (xgb.XGBRegressor): Trained model
     """
     model = xgb.XGBRegressor(
         n_estimators=100,
@@ -35,5 +19,5 @@ def train_xgboost_regressor(X_train, y_train):
     )
 
     model.fit(X_train, y_train)
-    return model
-
+    
+    return model  # << YOU MUST HAVE THIS LINE
