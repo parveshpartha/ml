@@ -25,19 +25,5 @@ def load_dataset(file_path):
     return pd.read_csv(file_path)
 
 
-def split_features_target(df, target_column="target"):
-    """
-    Separate features and target from dataset.
 
-    Parameters:
-        df (DataFrame): Full dataset
-        target_column (str): Name of target column
-
-    Returns:
-        X (DataFrame): Features
-        y (Series): Target
-    """
-    X = df.drop(columns=[target_column])
-    y = df[target_column]
-    return X, y
 
