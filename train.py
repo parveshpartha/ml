@@ -28,8 +28,7 @@ def train_xgboost_regressor(X_train, y_train, X_val, y_val, early_stopping_round
     model.fit(
         X_train, y_train,
         eval_set=[(X_val, y_val)],
-        verbose=True,
-        callbacks=[xgb.callback.EarlyStopping(rounds=early_stopping_rounds)]
+        verbose=True
     )
 
     return model
