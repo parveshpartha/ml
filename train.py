@@ -1,3 +1,5 @@
+import xgboost as xgb
+
 def train_xgboost_regressor(X_train, y_train):
     """
     Train an XGBoost Regressor.
